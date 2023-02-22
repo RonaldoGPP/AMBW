@@ -2,9 +2,26 @@
 <html lang="en">
     <head><title>NICO ASU</title></head>
     <body>
-    <script>
-    fetch("https://reqres.in/api/users")
-    .then(respon => console.log(respon))
-        </script>
+        <div id="here"></div>
+        <script>
+    async function foo() {
+    let obj;
+    const res = await fetch('https://reqres.in/api/users')
+    obj = await res.json();
+    return obj;
+}
+
+foo().then(dt => {							
+    for(i=0; i<dt.data.length; i++) {
+        here.innerHTML +=`
+<div class="card">
+<img src=${dt.data[i].avatar}></img>
+<h2>${dt.data[i].email}</h2>
+<p>${dt.data[i].first_name} ${dt.data[i].last_name} </p>
+
+</div>
+`;}
+    });
+</script>
         </body>
 </html>
